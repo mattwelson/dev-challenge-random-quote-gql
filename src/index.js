@@ -1,10 +1,17 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client"
+import WebFontLoader from "webfontloader"
 
 import "./index.css"
 import App from "./App"
 import * as serviceWorker from "./serviceWorker"
+
+WebFontLoader.load({
+  google: {
+    families: ["Raleway:400"],
+  },
+})
 
 const client = new ApolloClient({
   uri: "/.netlify/functions/graphql",
