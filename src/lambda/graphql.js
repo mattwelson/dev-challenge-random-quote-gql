@@ -11,6 +11,7 @@ const typeDefs = gql`
   }
 
   type Quote {
+    id: ID
     text: String
     author: String
   }
@@ -34,9 +35,10 @@ const fetchQuotes = async (url) => {
       page: parseInt(quoteResult.currentPage, 10),
       totalPages: quoteResult.totalPages,
       quotes: quoteResult.quotes.map(
-        ({ quoteText: text, quoteAuthor: author }) => ({
+        ({ quoteText: text, quoteAuthor: author, _id: id }) => ({
           text,
           author,
+          id,
         })
       ),
     }
@@ -57,6 +59,7 @@ const random = async () => {
     return {
       author: quoteResult.quote.quoteAuthor,
       text: quoteResult.quote.quoteText,
+      id: quoteResult.quote._id,
     }
   } catch (e) {
     console.error(e)
